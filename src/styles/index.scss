@@ -3,6 +3,11 @@
   --ThemeColor: #ceb88d;
 }
 
+@import './mixin.scss';
+@import './sidebar.scss';
+@import './variables.scss';
+@import './element.scss';
+@import './transition.scss';
 html,
 body {
   height: 100%;

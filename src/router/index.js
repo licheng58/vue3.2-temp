@@ -1,22 +1,150 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
+import { createRouter, createWebHashHistory } from 'vue-router';
+import layout from '@/layout/index.vue';
 
-const routes = [
+// 路由表显示规则
+// 1.如果meta && meta.title && meta.icon：则显示在menu菜单中，其中title为显示的内容，icon为显示的图标
+// 1 - 1.如果存在children：则以el - sub - menu（子菜单）展示
+// 1 - 2.否则：则以el - menu - item（菜单项）展示
+// 2.否则：不限时在menu菜单中
+
+/**
+ * 私有路由表
+ */
+const privateRoutes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home,
+    path: '/user',
+    component: layout,
+    redirect: '/user/manage',
+    meta: {
+      title: 'user',
+      icon: 'personnel',
+    },
+    children: [
+      {
+        path: '/user/manage',
+        component: () => import('@/views/user-manage/index.vue'),
+        meta: {
+          title: 'userManage',
+          icon: 'personnel-manage',
+        },
+      },
+      {
+        path: '/user/role',
+        component: () => import('@/views/role-list/index.vue'),
+        meta: {
+          title: 'roleList',
+          icon: 'role',
+        },
+      },
+      {
+        path: '/user/permission',
+        component: () => import('@/views/permission-list/index.vue'),
+        meta: {
+          title: 'permissionList',
+          icon: 'permission',
+        },
+      },
+      {
+        path: '/user/info/:id',
+        name: 'userInfo',
+        component: () => import('@/views/user-info/index.vue'),
+        meta: {
+          title: 'userInfo',
+        },
+      },
+      {
+        path: '/user/import',
+        name: 'import',
+        component: () => import('@/views/import/index.vue'),
+        meta: {
+          title: 'excelImport',
+        },
+      },
+    ],
   },
   {
+    path: '/article',
+    component: layout,
+    redirect: '/article/ranking',
+    meta: {
+      title: 'article',
+      icon: 'article',
+    },
+    children: [
+      {
+        path: '/article/ranking',
+        component: () => import('@/views/article-ranking/index.vue'),
+        meta: {
+          title: 'articleRanking',
+          icon: 'article-ranking',
+        },
+      },
+      {
+        path: '/article/:id',
+        component: () => import('@/views/article-detail/index.vue'),
+        meta: {
+          title: 'articleDetail',
+        },
+      },
+      {
+        path: '/article/create',
+        component: () => import('@/views/article-create/index.vue'),
+        meta: {
+          title: 'articleCreate',
+          icon: 'article-create',
+        },
+      },
+      {
+        path: '/article/editor/:id',
+        component: () => import('@/views/article-editor/index.vue'),
+        meta: {
+          title: 'articleEditor',
+        },
+      },
+    ],
+  },
+];
+
+/**
+ * 公开路由表
+ */
+const publicRoutes = [
+  {
     path: '/login',
-    name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/login'),
+    component: () => import('@/views/login/index.vue'),
+  },
+  {
+    path: '/',
+    // 注意：带有路径“/”的记录中的组件“默认”是一个不返回 Promise 的函数
+    component: layout,
+    redirect: '/profile',
+    children: [
+      {
+        path: '/profile',
+        name: 'profile',
+        component: () => import('@/views/profile/index.vue'),
+        meta: {
+          title: 'profile',
+          icon: 'el-icon-user',
+        },
+      },
+      {
+        path: '/404',
+        name: '404',
+        component: () => import('@/views/error-page/404.vue'),
+      },
+      {
+        path: '/401',
+        name: '401',
+        component: () => import('@/views/error-page/401.vue'),
+      },
+    ],
   },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
+  history: createWebHashHistory(),
+  routes: [...publicRoutes, ...privateRoutes],
 });
 
 export default router;
