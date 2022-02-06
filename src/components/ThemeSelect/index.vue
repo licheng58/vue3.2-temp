@@ -16,9 +16,7 @@
     </template>
   </el-dropdown>
   <!-- 展示弹出层 -->
-  <div>
-    <selectColor v-model="showVisibles" />
-  </div>
+  <selectColor v-model="showVisibles" />
 </template>
 
 <script setup>

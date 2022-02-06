@@ -1,7 +1,6 @@
-// 定义常量
 // sidebar
 $menuText: #bfcbd9;
-$menuActiveText: #ffffff;
+$menuActiveText: yellow;
 $subMenuActiveText: #f4f4f5;
 
 $menuBg: #304156;
@@ -12,7 +11,6 @@ $subMenuHover: #001528;
 
 $sideBarWidth: 210px;
 $hideSideBarWidth: 54px;
-
 $sideBarDuration: 0.28s;
 
 // https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
@@ -26,6 +24,4 @@ $sideBarDuration: 0.28s;
   subMenuBg: $subMenuBg;
   subMenuHover: $subMenuHover;
   sideBarWidth: $sideBarWidth;
-  hideSideBarWidth: $hideSideBarWidth;
-  sideBarDuration: $sideBarDuration;
 }

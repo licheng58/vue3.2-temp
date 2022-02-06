@@ -1,7 +1,196 @@
 <template>
-  <div>用户管理</div>
+  <div class="user-manage-container">
+    <!-- 操作 -->
+    <el-card class="header">
+      <div>
+        <el-button type="primary" @click="onImportexcelClick"> {{ $t('msg.excel.importExcel') }}</el-button>
+        <el-button type="success" @click="onToExcelClick">
+          {{ $t('msg.excel.exportExcel') }}
+        </el-button>
+      </div>
+    </el-card>
+
+    <!-- 表格 -->
+    <el-card>
+      <el-table :data="tableData" border style="width: 100%">
+        <el-table-column label="#" type="index" />
+        <el-table-column prop="username" :label="$t('msg.excel.name')"> </el-table-column>
+        <el-table-column prop="mobile" :label="$t('msg.excel.mobile')"> </el-table-column>
+        <el-table-column :label="$t('msg.excel.avatar')" align="center">
+          <template v-slot="{ row }">
+            <el-image class="avatar" :src="row.avatar" :preview-src-list="[row.avatar]"></el-image>
+          </template>
+        </el-table-column>
+        <el-table-column :label="$t('msg.excel.role')">
+          <template #default="{ row }">
+            <div v-if="row.role && row.role.length > 0">
+              <el-tag v-for="item in row.role" :key="item.id" size="mini">{{ item.title }}</el-tag>
+            </div>
+            <div v-else>
+              <el-tag size="mini">{{ $t('msg.excel.defaultRole') }}</el-tag>
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column prop="openTime" :label="$t('msg.excel.openTime')">
+          <template #default="{ row }">
+            {{ $filters.dateFilter(row.openTime) }}
+          </template>
+        </el-table-column>
+        <el-table-column :label="$t('msg.excel.action')" fixed="right" width="260">
+          <template #default="{ row }">
+            <el-button type="primary" size="mini" @click="onShowUserDetail(row._id)">{{
+              $t('msg.excel.show')
+            }}</el-button>
+            <el-button type="info" size="mini" @click="onRoleDialog(row._id)">{{ $t('msg.excel.showRole') }}</el-button>
+            <el-button type="danger" size="mini" @click="onRemoveClick(row)">{{ $t('msg.excel.remove') }}</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+
+      <el-pagination
+        class="pagination"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="page"
+        :page-sizes="[2, 5, 10, 20]"
+        :page-size="size"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+      >
+      </el-pagination>
+    </el-card>
+  </div>
+
+  <ExportExcel v-model="exportToExcelVisible" />
+  <roleDialog v-model="roleDialogVisible" :userId="selectId" @updateRole="getListData" />
 </template>
 
-<script setup></script>
+<script setup>
+  import { getUserManageList } from '@/api/user-manage';
+  import { watchSwitchLang } from '@/utils/i18n';
+  import { useRouter } from 'vue-router';
+  import { ref, onActivated, watch } from 'vue';
+  import { useI18n } from 'vue-i18n';
+  import { ElMessageBox, ElMessage } from 'element-plus';
+  import { deleteUser } from '@/api/user-manage';
+  import ExportExcel from '@/components/ExportExcel';
+  import roleDialog from './roleDialog';
+  const i18n = useI18n();
+  const router = useRouter();
 
-<style lang="scss" scoped></style>
+  // 数据相关
+  const tableData = ref([]);
+  const total = ref(0);
+  const page = ref(1);
+  const size = ref(2);
+
+  /**
+   * excel 导出点击事件
+   */
+  const exportToExcelVisible = ref(false);
+  const onToExcelClick = () => {
+    exportToExcelVisible.value = true;
+  };
+
+  // 获取数据的方法
+  const getListData = async () => {
+    const result = await getUserManageList({
+      page: page.value,
+      size: size.value,
+    });
+    tableData.value = result.list;
+    total.value = result.total;
+  };
+  getListData();
+
+  // 监听语言切换
+  watchSwitchLang(getListData);
+
+  // 分页相关
+  /**
+   * size 改变触发
+   */
+  const handleSizeChange = (currentSize) => {
+    size.value = currentSize;
+    getListData();
+  };
+
+  /**
+   * 页码改变触发
+   */
+  const handleCurrentChange = (currentPage) => {
+    page.value = currentPage;
+    getListData();
+  };
+
+  /**
+   * excel导入事件
+   */
+
+  const onImportexcelClick = () => {
+    router.push('/user/import');
+  };
+
+  /**
+   * 删除按钮点击事件
+   */
+
+  const onRemoveClick = (row) => {
+    ElMessageBox.confirm(i18n.t('msg.excel.dialogTitle1') + row.username + i18n.t('msg.excel.dialogTitle2'), {
+      type: 'warning',
+    }).then(async () => {
+      await deleteUser(row._id);
+      ElMessage.success(i18n.t('msg.excel.removeSuccess'));
+      // 重新渲染数据
+      getListData();
+    });
+  };
+
+  // 处理导入用户后数据不重新加载的问题
+  onActivated(getListData);
+
+  /**
+   * 点击用户详情
+   */
+  const onShowUserDetail = (id) => {
+    router.push(`/user/info/${id}`);
+  };
+
+  /**
+   * 分配权限弹框
+   */
+  const roleDialogVisible = ref(false);
+  const selectId = ref(null);
+  const onRoleDialog = (id) => {
+    roleDialogVisible.value = true;
+    selectId.value = id;
+  };
+
+  // 保证每次打开重新获取用户角色数据
+  watch(roleDialogVisible, (val) => {
+    if (!val) selectId.value = '';
+  });
+</script>
+
+<style lang="scss" scoped>
+  .user-manage-container {
+    .header {
+      margin-bottom: 22px;
+      text-align: right;
+    }
+    ::v-deep .avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+
+    ::v-deep .el-tag {
+      margin-right: 6px;
+    }
+
+    .pagination {
+      margin-top: 20px;
+      text-align: center;
+    }
+  }
+</style>

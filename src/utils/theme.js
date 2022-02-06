@@ -31,7 +31,7 @@ export const generateColors = (primary) => {
     const value = formula[key].replace(/primary/g, primary);
     colors[key] = '#' + rgbHex(color.convert(value));
   });
-  //   console.log(colors);
+  // console.log(colors);
   return colors;
 };
 

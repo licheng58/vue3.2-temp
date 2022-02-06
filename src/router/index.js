@@ -48,6 +48,7 @@ const privateRoutes = [
         path: '/user/info/:id',
         name: 'userInfo',
         component: () => import('@/views/user-info/index.vue'),
+        props: true,
         meta: {
           title: 'userInfo',
         },
@@ -103,6 +104,25 @@ const privateRoutes = [
       },
     ],
   },
+  // {
+  //   path: '/test',
+  //   component: layout,
+  //   redirect: '/test/111',
+  //   meta: {
+  //     title: 'user',
+  //     icon: 'personnel',
+  //   },
+  //   children: [
+  //     {
+  //       path: '/test/111',
+  //       component: () => import('@/views/test.vue'),
+  //       meta: {
+  //         title: 'userManage',
+  //         icon: 'personnel-manage',
+  //       },
+  //     },
+  //   ],
+  // },
 ];
 
 /**

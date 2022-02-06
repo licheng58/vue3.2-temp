@@ -15,8 +15,12 @@ const getters = {
   },
 
   sidebarOpened: (state) => state.app.sidebarOpened,
-  language: (state) => state.app.language,
+  language: (state) => {
+    // console.log(state.app.language);
+    return state.app.language;
+  },
   mainColor: (state) => state.theme.mainColor,
   tagsViewList: (state) => state.app.tagsViewList,
 };
+console.log(getters.cssVar.menuBg);
 export default getters;

@@ -14,8 +14,8 @@
         @contextmenu.prevent="openMenu($event, index)"
       >
         <span>{{ tag.title }}</span>
-        <span @click.prevent.stop="onCloseClick(index)"
-          ><svg-icon v-show="!isActive(tag)" className="el-icon-close" icon="close"
+        <span @click.prevent.stop="onCloseClick(index)" v-show="!isActive(tag)"
+          ><svg-icon className="el-icon-close" icon="close"
         /></span>
       </router-link>
     </el-scrollbar>

@@ -21,7 +21,7 @@ const messages = {
  * 返回当前 lang
  */
 function getLanguage() {
-  return getItem(LANG);
+  return getItem(LANG) || 'zh';
 }
 const i18n = createI18n({
   // 使用 Composition API 模式，则需要将其设置为false
