@@ -3,7 +3,9 @@
     <!-- 操作 -->
     <el-card class="header">
       <div>
-        <el-button type="primary" @click="onImportexcelClick"> {{ $t('msg.excel.importExcel') }}</el-button>
+        <el-button type="primary" @click="onImportexcelClick" v-permission="['importUser']">
+          {{ $t('msg.excel.importExcel') }}</el-button
+        >
         <el-button type="success" @click="onToExcelClick">
           {{ $t('msg.excel.exportExcel') }}
         </el-button>
@@ -41,8 +43,12 @@
             <el-button type="primary" size="mini" @click="onShowUserDetail(row._id)">{{
               $t('msg.excel.show')
             }}</el-button>
-            <el-button type="info" size="mini" @click="onRoleDialog(row._id)">{{ $t('msg.excel.showRole') }}</el-button>
-            <el-button type="danger" size="mini" @click="onRemoveClick(row)">{{ $t('msg.excel.remove') }}</el-button>
+            <el-button type="info" size="mini" @click="onRoleDialog(row._id)" v-permission="['distributeRole']">{{
+              $t('msg.excel.showRole')
+            }}</el-button>
+            <el-button type="danger" size="mini" @click="onRemoveClick(row)" v-permission="['removeUser']">{{
+              $t('msg.excel.remove')
+            }}</el-button>
           </template>
         </el-table-column>
       </el-table>

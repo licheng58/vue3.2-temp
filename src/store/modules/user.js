@@ -2,7 +2,7 @@ import { login, getUserInfo } from '@/api/sys';
 import { TOKEN } from '@/contant';
 import { setItem, getItem, clearItem } from '@/utils/storage';
 import { setTimeStamp } from '@/utils/auth';
-import router from '@/router';
+import router, { resetRouter } from '@/router';
 // 导入加密文件功能
 import md5 from 'md5';
 
@@ -61,6 +61,7 @@ export default {
 
     // 退出
     logout() {
+      resetRouter();
       this.commit('user/setToken', '');
       this.commit('user/setUserInfo', {});
       clearItem();
