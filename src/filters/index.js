@@ -1,4 +1,16 @@
 import dayjs from 'dayjs';
+import rt from 'dayjs/plugin/relativeTime';
+// 语言包
+import 'dayjs/locale/zh-cn';
+import store from '@/store';
+
+// 加载相对时间插件
+dayjs.extend(rt);
+function relativeTime(val) {
+  return dayjs()
+    .locale(store.getters.language === 'zh' ? 'zh-cn' : 'en')
+    .to(dayjs(val));
+}
 
 const dateFilter = (val, format = 'YYYY-MM-DD') => {
   if (!isNaN(val)) {
@@ -11,5 +23,6 @@ const dateFilter = (val, format = 'YYYY-MM-DD') => {
 export default (app) => {
   app.config.globalProperties.$filters = {
     dateFilter,
+    relativeTime,
   };
 };

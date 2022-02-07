@@ -18,8 +18,10 @@ router.beforeEach(async (to, from, next) => {
         const { permission } = await store.dispatch('user/getUserInfo');
         // 处理用户权限，筛选出需要添加的权限
         const filterRoutes = await store.dispatch('permission/filterRoutes', permission.menus);
+
         // 利用 addRoute 循环添加
         filterRoutes.forEach((item) => {
+          // console.log(item);
           router.addRoute(item);
         });
         // 添加完动态路由之后，需要在进行一次主动跳转

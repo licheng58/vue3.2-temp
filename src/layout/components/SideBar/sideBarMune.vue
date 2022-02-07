@@ -23,6 +23,7 @@
   const router = useRouter();
   const routes = computed(() => {
     const filterRoutes = filterRouters(router.getRoutes());
+    // console.log(filterRoutes);
     return generateMenus(filterRoutes);
   });
 

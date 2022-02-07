@@ -21,6 +21,7 @@ const getters = {
   },
   mainColor: (state) => state.theme.mainColor,
   tagsViewList: (state) => state.app.tagsViewList,
+  routes: (state) => state.permission.routes,
 };
-console.log(getters.cssVar.menuBg);
+// console.log(getters.cssVar.menuBg);
 export default getters;
