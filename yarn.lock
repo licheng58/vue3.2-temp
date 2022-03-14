@@ -883,7 +883,15 @@
     "@babel/types" "^7.4.4"
     "esutils" "^2.0.2"
 
-"@babel/runtime@^7.11.0", "@babel/runtime@^7.8.4":
+"@babel/runtime-corejs3@^7.11.2":
+  "integrity" "sha512-qeydncU80ravKzovVncW3EYaC1ji3GpntdPgNcJy9g7hHSY6KX+ne1cbV3ov7Zzm4F1z0+QreZPCuw1ynkmYNg=="
+  "resolved" "https://registry.npmmirror.com/@babel/runtime-corejs3/-/runtime-corejs3-7.17.0.tgz"
+  "version" "7.17.0"
+  dependencies:
+    "core-js-pure" "^3.20.2"
+    "regenerator-runtime" "^0.13.4"
+
+"@babel/runtime@^7.11.0", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.8.4":
   "integrity" "sha512-9E9FJowqAsytyOY6LG+1KuueckRL+aQW+mKvXRXnuFGyRAyepJPmEo9vgMfXUA6O9u3IeEdv9MAkppFcaQwogQ=="
   "resolved" "https://registry.npmmirror.com/@babel/runtime/download/@babel/runtime-7.16.7.tgz"
   "version" "7.16.7"
@@ -1044,6 +1052,19 @@
   "integrity" "sha1-pTUV2yXYA4N0OBtzryC7Ty5QjYc="
   "resolved" "https://registry.nlark.com/@soda/get-current-script/download/@soda/get-current-script-1.0.2.tgz"
   "version" "1.0.2"
+
+"@toast-ui/editor@^3.0.2":
+  "integrity" "sha512-auyfN5OzXZoR76FeR9kVKuZctEPj15i9PQOM4ebE1VOWyJ9VPXPwFYDZ1KQNWkxkMWWqw7qI28VDIUQhTvK3mg=="
+  "resolved" "https://registry.npmmirror.com/@toast-ui/editor/-/editor-3.0.2.tgz"
+  "version" "3.0.2"
+  dependencies:
+    "prosemirror-commands" "^1.1.9"
+    "prosemirror-history" "^1.1.3"
+    "prosemirror-inputrules" "^1.1.3"
+    "prosemirror-keymap" "^1.1.4"
+    "prosemirror-model" "^1.14.1"
+    "prosemirror-state" "^1.3.4"
+    "prosemirror-view" "^1.18.7"
 
 "@types/body-parser@*":
   "integrity" "sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g=="
@@ -3023,6 +3044,11 @@
     "browserslist" "^4.19.1"
     "semver" "7.0.0"
 
+"core-js-pure@^3.20.2":
+  "integrity" "sha512-VaJUunCZLnxuDbo1rNOzwbet9E1K9joiXS5+DQMPtgxd24wfsZbJZMMfQLGYMlCUvSxLfsRUUhoOR2x28mFfeg=="
+  "resolved" "https://registry.npmmirror.com/core-js-pure/-/core-js-pure-3.21.0.tgz"
+  "version" "3.21.0"
+
 "core-js@^3.6.5":
   "integrity" "sha512-vVl8j8ph6tRS3B8qir40H7yw7voy17xL0piAjlbBUsH7WIfzoedL/ZOr1OV9FyZQLWXsayOJyV4tnRyXR85/ag=="
   "resolved" "https://registry.npmmirror.com/core-js/download/core-js-3.20.3.tgz"
@@ -4964,6 +4990,13 @@
   "resolved" "https://registry.nlark.com/human-signals/download/human-signals-1.1.1.tgz"
   "version" "1.1.1"
 
+"i18next@^20.4.0":
+  "integrity" "sha512-89iWWJudmaHJwzIdJ/1eu98GtsJnwBhOUWwlAre70itPMuTE/NTPtgVeaS1CGaB8Q3XrYBGpEqlq4jsScDx9kg=="
+  "resolved" "https://registry.npmmirror.com/i18next/-/i18next-20.4.0.tgz"
+  "version" "20.4.0"
+  dependencies:
+    "@babel/runtime" "^7.12.0"
+
 "iconv-lite@^0.4.24", "iconv-lite@0.4.24":
   "integrity" "sha1-ICK0sl+93CHS9SSXSkdKr+czkIs="
   "resolved" "https://registry.nlark.com/iconv-lite/download/iconv-lite-0.4.24.tgz"
@@ -6528,6 +6561,11 @@
     "strip-ansi" "^5.2.0"
     "wcwidth" "^1.0.1"
 
+"orderedmap@^1.1.0":
+  "integrity" "sha512-3Ux8um0zXbVacKUkcytc0u3HgC0b0bBLT+I60r2J/En72cI0nZffqrA7Xtf2Hqs27j1g82llR5Mhbd0Z1XW4AQ=="
+  "resolved" "https://registry.npmmirror.com/orderedmap/-/orderedmap-1.1.1.tgz"
+  "version" "1.1.1"
+
 "original@^1.0.0":
   "integrity" "sha1-5EKmHP/hxf0gpl8yYcJmY7MD8l8="
   "resolved" "https://registry.nlark.com/original/download/original-1.0.2.tgz"
@@ -7305,6 +7343,71 @@
   "resolved" "https://registry.nlark.com/promise-inflight/download/promise-inflight-1.0.1.tgz"
   "version" "1.0.1"
 
+"prosemirror-commands@^1.1.9":
+  "integrity" "sha512-S/IkpXfpuLFsRynC2HQ5iYROUPiZskKS1+ClcWycGJvj4HMb/mVfeEkQrixYxgTl96EAh+RZQNWPC06GZXk5tQ=="
+  "resolved" "https://registry.npmmirror.com/prosemirror-commands/-/prosemirror-commands-1.2.1.tgz"
+  "version" "1.2.1"
+  dependencies:
+    "prosemirror-model" "^1.0.0"
+    "prosemirror-state" "^1.0.0"
+    "prosemirror-transform" "^1.0.0"
+
+"prosemirror-history@^1.1.3":
+  "integrity" "sha512-B9v9xtf4fYbKxQwIr+3wtTDNLDZcmMMmGiI3TAPShnUzvo+Rmv1GiUrsQChY1meetHl7rhML2cppF3FTs7f7UQ=="
+  "resolved" "https://registry.npmmirror.com/prosemirror-history/-/prosemirror-history-1.2.0.tgz"
+  "version" "1.2.0"
+  dependencies:
+    "prosemirror-state" "^1.2.2"
+    "prosemirror-transform" "^1.0.0"
+    "rope-sequence" "^1.3.0"
+
+"prosemirror-inputrules@^1.1.3":
+  "integrity" "sha512-ZaHCLyBtvbyIHv0f5p6boQTIJjlD6o2NPZiEaZWT2DA+j591zS29QQEMT4lBqwcLW3qRSf7ZvoKNbf05YrsStw=="
+  "resolved" "https://registry.npmmirror.com/prosemirror-inputrules/-/prosemirror-inputrules-1.1.3.tgz"
+  "version" "1.1.3"
+  dependencies:
+    "prosemirror-state" "^1.0.0"
+    "prosemirror-transform" "^1.0.0"
+
+"prosemirror-keymap@^1.1.4":
+  "integrity" "sha512-8SZgPH3K+GLsHL2wKuwBD9rxhsbnVBTwpHCO4VUO5GmqUQlxd/2GtBVWTsyLq4Dp3N9nGgPd3+lZFKUDuVp+Vw=="
+  "resolved" "https://registry.npmmirror.com/prosemirror-keymap/-/prosemirror-keymap-1.1.5.tgz"
+  "version" "1.1.5"
+  dependencies:
+    "prosemirror-state" "^1.0.0"
+    "w3c-keyname" "^2.2.0"
+
+"prosemirror-model@^1.0.0", "prosemirror-model@^1.14.1", "prosemirror-model@^1.16.0":
+  "integrity" "sha512-r1/w0HDU40TtkXp0DyKBnFPYwd8FSlUSJmGCGFv4DeynfeSlyQF2FD0RQbVEMOe6P3PpUSXM6LZBV7W/YNZ4mA=="
+  "resolved" "https://registry.npmmirror.com/prosemirror-model/-/prosemirror-model-1.16.1.tgz"
+  "version" "1.16.1"
+  dependencies:
+    "orderedmap" "^1.1.0"
+
+"prosemirror-state@^1.0.0", "prosemirror-state@^1.2.2", "prosemirror-state@^1.3.4":
+  "integrity" "sha512-Xkkrpd1y/TQ6HKzN3agsQIGRcLckUMA9u3j207L04mt8ToRgpGeyhbVv0HI7omDORIBHjR29b7AwlATFFf2GLA=="
+  "resolved" "https://registry.npmmirror.com/prosemirror-state/-/prosemirror-state-1.3.4.tgz"
+  "version" "1.3.4"
+  dependencies:
+    "prosemirror-model" "^1.0.0"
+    "prosemirror-transform" "^1.0.0"
+
+"prosemirror-transform@^1.0.0", "prosemirror-transform@^1.1.0":
+  "integrity" "sha512-gTsg3UIeaFuEY6+YmNPMgTpEkCKPedkFIUnsPpOMbclU701fEVI/e4VOXACXh3BO5rZJaBbEBwrnzB0mLp6eBA=="
+  "resolved" "https://registry.npmmirror.com/prosemirror-transform/-/prosemirror-transform-1.3.4.tgz"
+  "version" "1.3.4"
+  dependencies:
+    "prosemirror-model" "^1.0.0"
+
+"prosemirror-view@^1.18.7":
+  "integrity" "sha512-B4DAzriNpI/AVoW0Lu6SVfX00jZZQxOVwdBQEjWlRbCdT9V0pvk4GQJ3JTFaib+b6BcPdRZ3MjWXz2xvV1rblA=="
+  "resolved" "https://registry.npmmirror.com/prosemirror-view/-/prosemirror-view-1.23.6.tgz"
+  "version" "1.23.6"
+  dependencies:
+    "prosemirror-model" "^1.16.0"
+    "prosemirror-state" "^1.0.0"
+    "prosemirror-transform" "^1.1.0"
+
 "proxy-addr@~2.0.7":
   "integrity" "sha1-8Z/mnOqzEe65S0LnDowgcPm6ECU="
   "resolved" "https://registry.nlark.com/proxy-addr/download/proxy-addr-2.0.7.tgz?cache=0&sync_timestamp=1622509170257&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fproxy-addr%2Fdownload%2Fproxy-addr-2.0.7.tgz"
@@ -7753,6 +7856,11 @@
   dependencies:
     "hash-base" "^3.0.0"
     "inherits" "^2.0.1"
+
+"rope-sequence@^1.3.0":
+  "integrity" "sha512-ku6MFrwEVSVmXLvy3dYph3LAMNS0890K7fabn+0YIRQ2T96T9F4gkFf0vf0WW0JUraNWwGRtInEpH7yO4tbQZg=="
+  "resolved" "https://registry.npmmirror.com/rope-sequence/-/rope-sequence-1.3.2.tgz"
+  "version" "1.3.2"
 
 "run-async@^2.4.0":
   "integrity" "sha1-hEDsz5nqPnC9QJ1JqriOEMGJpFU="
@@ -8740,6 +8848,11 @@
   "resolved" "https://registry.npmmirror.com/tslib/download/tslib-1.14.1.tgz"
   "version" "1.14.1"
 
+"tslib@^2.1.0":
+  "integrity" "sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw=="
+  "resolved" "https://registry.npmmirror.com/tslib/-/tslib-2.3.1.tgz"
+  "version" "2.3.1"
+
 "tty-browserify@0.0.0":
   "integrity" "sha1-oVe6QC2iTpv5V/mqadUk7tQpAaY="
   "resolved" "https://registry.nlark.com/tty-browserify/download/tty-browserify-0.0.0.tgz"
@@ -9150,6 +9263,20 @@
   "version" "4.0.2"
   dependencies:
     "@vue/devtools-api" "^6.0.0-beta.11"
+
+"w3c-keyname@^2.2.0":
+  "integrity" "sha512-tOhfEwEzFLJzf6d1ZPkYfGj+FWhIpBux9ppoP3rlclw3Z0BZv3N7b7030Z1kYth+6rDuAsXUFr+d0VE6Ed1ikw=="
+  "resolved" "https://registry.npmmirror.com/w3c-keyname/-/w3c-keyname-2.2.4.tgz"
+  "version" "2.2.4"
+
+"wangeditor@^4.7.6":
+  "integrity" "sha512-8mOrYG8hDW0ZUhJqPpPGeav90RwZRHIPQolHVjdyQ6jitSmlCTzc67vLz8X5bXocriGOAaVIPiphAD+5wDNwBg=="
+  "resolved" "https://registry.npmmirror.com/wangeditor/-/wangeditor-4.7.6.tgz"
+  "version" "4.7.6"
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+    "@babel/runtime-corejs3" "^7.11.2"
+    "tslib" "^2.1.0"
 
 "watchpack-chokidar2@^2.0.1":
   "integrity" "sha1-OFAAcu5uzmbzdpk2lQ6hdxvhyVc="

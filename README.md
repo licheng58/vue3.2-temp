@@ -27,5 +27,5 @@ npm run lint
 ### 快捷倒入 element
 
 ```
-vue add element-plus
+vue add element-plus11
 ```
