@@ -2,9 +2,10 @@
   "trailingComma": "all",
   "printWidth": 120,
   "tabWidth": 2,
-  "semi": true,
+  "semi": false,
   "singleQuote": true,
   "bracketSpacing": true,
   "vueIndentScriptAndStyle": true,
-  "arrowParens": "always"
+  "arrowParens": "always",
+  "endOfLine": "auto"
 }

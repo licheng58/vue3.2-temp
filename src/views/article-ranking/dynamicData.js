@@ -1,6 +1,6 @@
-import i18n from '@/i18n';
+import i18n from '@/i18n'
 
-const t = i18n.global.t;
+const t = i18n.global.t
 
 export default () => [
   {
@@ -27,4 +27,4 @@ export default () => [
     label: t('msg.article.action'),
     prop: 'action',
   },
-];
+]

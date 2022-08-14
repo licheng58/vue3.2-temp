@@ -1,51 +1,51 @@
 // 处理主题色变更
-import color from 'css-color-function';
-import rgbHex from 'rgb-hex';
-import formula from '@/contant/formula.json';
-import axios from 'axios';
+import color from 'css-color-function'
+import rgbHex from 'rgb-hex'
+import formula from '@/contant/formula.json'
+import axios from 'axios'
 
 /**
  * 根据主色值，生成最新的样式表
  */
 export const generateNewStyle = async (primaryColor) => {
-  const colors = generateColors(primaryColor);
-  let cssText = await getOriginalStyle();
+  const colors = generateColors(primaryColor)
+  let cssText = await getOriginalStyle()
 
   // 遍历生成的样式表，在 CSS 的原样式中进行全局替换
   Object.keys(colors).forEach((key) => {
-    cssText = cssText.replace(new RegExp('(:|\\s+)' + key, 'g'), '$1' + colors[key]);
-  });
+    cssText = cssText.replace(new RegExp('(:|\\s+)' + key, 'g'), '$1' + colors[key])
+  })
 
-  return cssText;
-};
+  return cssText
+}
 
 /**
  * 根据主色生成色值表
  */
 export const generateColors = (primary) => {
-  if (!primary) return;
+  if (!primary) return
   const colors = {
     primary,
-  };
+  }
   Object.keys(formula).forEach((key) => {
-    const value = formula[key].replace(/primary/g, primary);
-    colors[key] = '#' + rgbHex(color.convert(value));
-  });
+    const value = formula[key].replace(/primary/g, primary)
+    colors[key] = '#' + rgbHex(color.convert(value))
+  })
   // console.log(colors);
-  return colors;
-};
+  return colors
+}
 
 /**
  * 获取当前 element-plus 的默认样式表
  */
 const getOriginalStyle = async () => {
-  const version = require('element-plus/package.json').version;
+  const version = require('element-plus/package.json').version
   //   console.log(version);
-  const url = `https://unpkg.com/element-plus@${version}/dist/index.css`;
-  const { data } = await axios(url);
+  const url = `https://unpkg.com/element-plus@${version}/dist/index.css`
+  const { data } = await axios(url)
   // 把获取到的数据筛选为原样式模板
-  return getStyleTemplate(data);
-};
+  return getStyleTemplate(data)
+}
 
 /**
  * 返回 style 的 template
@@ -64,14 +64,14 @@ const getStyleTemplate = (data) => {
     '#c6e2ff': 'light-7',
     '#d9ecff': 'light-8',
     '#ecf5ff': 'light-9',
-  };
+  }
   // 根据默认色值为要替换的色值打上标记
   Object.keys(colorMap).forEach((key) => {
-    const value = colorMap[key];
-    data = data.replace(new RegExp(key, 'ig'), value);
-  });
-  return data;
-};
+    const value = colorMap[key]
+    data = data.replace(new RegExp(key, 'ig'), value)
+  })
+  return data
+}
 
 /**
  * 写入新样式到 style
@@ -79,7 +79,7 @@ const getStyleTemplate = (data) => {
  * @param {*} isNewStyleTag 是否生成新的 style 标签
  */
 export const writeNewStyle = (elNewStyle) => {
-  const style = document.createElement('style');
-  style.innerText = elNewStyle;
-  document.head.appendChild(style);
-};
+  const style = document.createElement('style')
+  style.innerText = elNewStyle
+  document.head.appendChild(style)
+}

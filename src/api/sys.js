@@ -1,4 +1,4 @@
-import request from '@/utils/request';
+import request from '@/utils/request'
 
 /**
  * @Author licheng
@@ -11,8 +11,8 @@ export const login = (data) => {
     url: 'sys/login',
     method: 'post',
     data,
-  });
-};
+  })
+}
 
 /**
  * @Author licheng
@@ -23,5 +23,5 @@ export const login = (data) => {
 export const getUserInfo = () => {
   return request({
     url: 'sys/profile',
-  });
-};
+  })
+}

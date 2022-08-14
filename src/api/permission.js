@@ -1,4 +1,4 @@
-import request from '@/utils/request';
+import request from '@/utils/request'
 
 /**
  * 获取所有权限
@@ -6,5 +6,5 @@ import request from '@/utils/request';
 export const permissionList = () => {
   return request({
     url: '/permission/list',
-  });
-};
+  })
+}

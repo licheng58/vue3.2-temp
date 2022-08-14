@@ -1,11 +1,11 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
-import layout from '@/layout/index.vue';
-import ArticleCreaterRouter from './modules/ArticleCreate';
-import ArticleRouter from './modules/Article';
-import PermissionListRouter from './modules/PermissionList';
-import RoleListRouter from './modules/roleList.js';
-import UserManageRouter from './modules/UserManage';
-import store from '@/store';
+import { createRouter, createWebHashHistory } from 'vue-router'
+import layout from '@/layout/index.vue'
+import ArticleCreaterRouter from './modules/ArticleCreate'
+import ArticleRouter from './modules/Article'
+import PermissionListRouter from './modules/PermissionList'
+import RoleListRouter from './modules/roleList.js'
+import UserManageRouter from './modules/UserManage'
+import store from '@/store'
 
 export const privateRoutes = [
   RoleListRouter,
@@ -13,7 +13,7 @@ export const privateRoutes = [
   PermissionListRouter,
   ArticleCreaterRouter,
   ArticleRouter,
-];
+]
 
 /**
  * 公开路由表
@@ -39,6 +39,15 @@ export const publicRoutes = [
         },
       },
       {
+        path: '/chart',
+        name: 'chart',
+        component: () => import('@/views/chart/index.vue'),
+        meta: {
+          title: 'chart',
+          icon: 'el-icon-user',
+        },
+      },
+      {
         path: '/404',
         name: '404',
         component: () => import('@/views/error-page/404.vue'),
@@ -50,17 +59,17 @@ export const publicRoutes = [
       },
     ],
   },
-];
+]
 
 /**
  * 初始化路由表
  */
 export function resetRouter() {
   if (store.getters.userInfo && store.getters.userInfo.permission && store.getters.userInfo.permission.menus) {
-    const menus = store.getters.userInfo.permission.menus;
+    const menus = store.getters.userInfo.permission.menus
     menus.forEach((menu) => {
-      router.removeRoute(menu);
-    });
+      router.removeRoute(menu)
+    })
   }
 }
 
@@ -68,6 +77,6 @@ const router = createRouter({
   // history: process.env.NODE_ENV === 'production' ? createWebHistory() : createWebHashHistory(),
   history: createWebHashHistory(),
   routes: publicRoutes,
-});
+})
 
-export default router;
+export default router

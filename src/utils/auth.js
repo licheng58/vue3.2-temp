@@ -1,25 +1,25 @@
-import { TIME_STAMP, TOKEN_TIMEOUT_VALUE } from '@/contant';
-import { setItem, getItem } from '@/utils/storage';
+import { TIME_STAMP, TOKEN_TIMEOUT_VALUE } from '@/contant'
+import { setItem, getItem } from '@/utils/storage'
 // 前端记录token时长方法
 /**
  * 获取时间戳
  */
 export function getTimeStamp() {
-  return getItem(TIME_STAMP);
+  return getItem(TIME_STAMP)
 }
 /**
  * 设置时间戳
  */
 export function setTimeStamp() {
-  setItem(TIME_STAMP, Date.now());
+  setItem(TIME_STAMP, Date.now())
 }
 /**
  * 是否超时
  */
 export function isCheckTimeout() {
   // 当前时间戳
-  var currentTime = Date.now();
+  var currentTime = Date.now()
   // 缓存时间戳
-  var timeStamp = getTimeStamp();
-  return currentTime - timeStamp > TOKEN_TIMEOUT_VALUE;
+  var timeStamp = getTimeStamp()
+  return currentTime - timeStamp > TOKEN_TIMEOUT_VALUE
 }

@@ -14,12 +14,12 @@
 </template>
 
 <script setup>
-  import { defineProps, defineEmits, ref, watch } from 'vue';
-  import { roleList } from '@/api/role';
-  import { watchSwitchLang } from '@/utils/i18n';
-  import { userRoles, updateRole } from '@/api/user-manage';
-  import { useI18n } from 'vue-i18n';
-  import { ElMessage } from 'element-plus';
+  import { defineProps, defineEmits, ref, watch } from 'vue'
+  import { roleList } from '@/api/role'
+  import { watchSwitchLang } from '@/utils/i18n'
+  import { userRoles, updateRole } from '@/api/user-manage'
+  import { useI18n } from 'vue-i18n'
+  import { ElMessage } from 'element-plus'
   const props = defineProps({
     modelValue: {
       type: Boolean,
@@ -29,56 +29,56 @@
       type: String,
       required: true,
     },
-  });
+  })
 
   // 所有角色
-  const allRoleList = ref([]);
+  const allRoleList = ref([])
   // 获取所有角色数据的方法
   const getListData = async () => {
-    allRoleList.value = await roleList();
-  };
-  getListData();
-  watchSwitchLang(getListData);
+    allRoleList.value = await roleList()
+  }
+  getListData()
+  watchSwitchLang(getListData)
 
   // 当前用户角色
-  const userRoleTitleList = ref([]);
+  const userRoleTitleList = ref([])
 
-  const emits = defineEmits(['update:modelValue', 'updateRole']);
+  const emits = defineEmits(['update:modelValue', 'updateRole'])
 
   // 获取当前用户角色
   const getUserRoles = async () => {
-    const res = await userRoles(props.userId);
-    userRoleTitleList.value = res.role.map((item) => item.title);
-  };
+    const res = await userRoles(props.userId)
+    userRoleTitleList.value = res.role.map((item) => item.title)
+  }
   watch(
     () => props.userId,
     (val) => {
-      if (val) getUserRoles();
+      if (val) getUserRoles()
     },
-  );
+  )
 
   /**
   确定按钮点击事件
  */
-  const i18n = useI18n();
+  const i18n = useI18n()
   const onConfirm = async () => {
     // 处理数据结构
     const roles = userRoleTitleList.value.map((title) => {
-      return allRoleList.value.find((role) => role.title === title);
-    });
+      return allRoleList.value.find((role) => role.title === title)
+    })
 
-    await updateRole(props.userId, roles);
-    emits('updateRole');
-    ElMessage.success(i18n.t('msg.role.updateRoleSuccess'));
-    closed();
-  };
+    await updateRole(props.userId, roles)
+    emits('updateRole')
+    ElMessage.success(i18n.t('msg.role.updateRoleSuccess'))
+    closed()
+  }
 
   /**
    * 关闭
    */
   const closed = () => {
-    emits('update:modelValue', false);
-  };
+    emits('update:modelValue', false)
+  }
 </script>
 
 <style lang="scss" scoped></style>

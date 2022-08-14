@@ -70,6 +70,6 @@ const steps = (i18n) => {
         position: 'right-center',
       },
     },
-  ];
-};
-export default steps;
+  ]
+}
+export default steps

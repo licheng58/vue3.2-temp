@@ -1,8 +1,8 @@
-import { createI18n } from 'vue-i18n';
-import mZhLocale from './lang/zh';
-import mEnLocale from './lang/en';
-import { getItem } from '@/utils/storage';
-import { LANG } from '@/contant';
+import { createI18n } from 'vue-i18n'
+import mZhLocale from './lang/zh'
+import mEnLocale from './lang/en'
+import { getItem } from '@/utils/storage'
+import { LANG } from '@/contant'
 
 const messages = {
   en: {
@@ -15,13 +15,13 @@ const messages = {
       ...mZhLocale,
     },
   },
-};
+}
 
 /**
  * 返回当前 lang
  */
 function getLanguage() {
-  return getItem(LANG) || 'zh';
+  return getItem(LANG) || 'zh'
 }
 const i18n = createI18n({
   // 使用 Composition API 模式，则需要将其设置为false
@@ -30,6 +30,6 @@ const i18n = createI18n({
   globalInjection: true,
   locale: getLanguage(),
   messages,
-});
+})
 
-export default i18n;
+export default i18n
