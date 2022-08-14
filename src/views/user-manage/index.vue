@@ -72,70 +72,70 @@
 </template>
 
 <script setup>
-  import { getUserManageList } from '@/api/user-manage';
-  import { watchSwitchLang } from '@/utils/i18n';
-  import { useRouter } from 'vue-router';
-  import { ref, onActivated, watch } from 'vue';
-  import { useI18n } from 'vue-i18n';
-  import { ElMessageBox, ElMessage } from 'element-plus';
-  import { deleteUser } from '@/api/user-manage';
-  import ExportExcel from '@/components/ExportExcel';
-  import roleDialog from './roleDialog';
-  const i18n = useI18n();
-  const router = useRouter();
+  import { getUserManageList } from '@/api/user-manage'
+  import { watchSwitchLang } from '@/utils/i18n'
+  import { useRouter } from 'vue-router'
+  import { ref, onActivated, watch } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { ElMessageBox, ElMessage } from 'element-plus'
+  import { deleteUser } from '@/api/user-manage'
+  import ExportExcel from '@/components/ExportExcel'
+  import roleDialog from './roleDialog'
+  const i18n = useI18n()
+  const router = useRouter()
 
   // 数据相关
-  const tableData = ref([]);
-  const total = ref(0);
-  const page = ref(1);
-  const size = ref(2);
+  const tableData = ref([])
+  const total = ref(0)
+  const page = ref(1)
+  const size = ref(2)
 
   /**
    * excel 导出点击事件
    */
-  const exportToExcelVisible = ref(false);
+  const exportToExcelVisible = ref(false)
   const onToExcelClick = () => {
-    exportToExcelVisible.value = true;
-  };
+    exportToExcelVisible.value = true
+  }
 
   // 获取数据的方法
   const getListData = async () => {
     const result = await getUserManageList({
       page: page.value,
       size: size.value,
-    });
-    tableData.value = result.list;
-    total.value = result.total;
-  };
-  getListData();
+    })
+    tableData.value = result.list
+    total.value = result.total
+  }
+  getListData()
 
   // 监听语言切换
-  watchSwitchLang(getListData);
+  watchSwitchLang(getListData)
 
   // 分页相关
   /**
    * size 改变触发
    */
   const handleSizeChange = (currentSize) => {
-    size.value = currentSize;
-    getListData();
-  };
+    size.value = currentSize
+    getListData()
+  }
 
   /**
    * 页码改变触发
    */
   const handleCurrentChange = (currentPage) => {
-    page.value = currentPage;
-    getListData();
-  };
+    page.value = currentPage
+    getListData()
+  }
 
   /**
    * excel导入事件
    */
 
   const onImportexcelClick = () => {
-    router.push('/user/import');
-  };
+    router.push('/user/import')
+  }
 
   /**
    * 删除按钮点击事件
@@ -145,37 +145,37 @@
     ElMessageBox.confirm(i18n.t('msg.excel.dialogTitle1') + row.username + i18n.t('msg.excel.dialogTitle2'), {
       type: 'warning',
     }).then(async () => {
-      await deleteUser(row._id);
-      ElMessage.success(i18n.t('msg.excel.removeSuccess'));
+      await deleteUser(row._id)
+      ElMessage.success(i18n.t('msg.excel.removeSuccess'))
       // 重新渲染数据
-      getListData();
-    });
-  };
+      getListData()
+    })
+  }
 
   // 处理导入用户后数据不重新加载的问题
-  onActivated(getListData);
+  onActivated(getListData)
 
   /**
    * 点击用户详情
    */
   const onShowUserDetail = (id) => {
-    router.push(`/user/info/${id}`);
-  };
+    router.push(`/user/info/${id}`)
+  }
 
   /**
    * 分配权限弹框
    */
-  const roleDialogVisible = ref(false);
-  const selectId = ref(null);
+  const roleDialogVisible = ref(false)
+  const selectId = ref(null)
   const onRoleDialog = (id) => {
-    roleDialogVisible.value = true;
-    selectId.value = id;
-  };
+    roleDialogVisible.value = true
+    selectId.value = id
+  }
 
   // 保证每次打开重新获取用户角色数据
   watch(roleDialogVisible, (val) => {
-    if (!val) selectId.value = '';
-  });
+    if (!val) selectId.value = ''
+  })
 </script>
 
 <style lang="scss" scoped>
