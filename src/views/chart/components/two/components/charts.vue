@@ -9,6 +9,11 @@
   import { onMounted, ref } from 'vue'
   import * as echarts from 'echarts'
   import { useI18n } from 'vue-i18n'
+  import bus from '@/utils/eventBus'
+  bus.on('changeCurrentDate', (val) => {
+    request_getChartTimeAmount(val)
+  })
+
   const i18n = useI18n()
 
   const data = ref([])

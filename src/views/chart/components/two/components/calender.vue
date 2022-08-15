@@ -19,12 +19,16 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+  import { ref, watch } from 'vue'
   import { getChartCalendar } from '@/api/chart.js'
+  import bus from '@/utils/eventBus'
 
   // 选中的日期
   const currentDate = ref(new Date())
   const calendarList = ref([])
+  watch(currentDate, (val) => {
+    bus.emit('changeCurrentDate', val)
+  })
 
   // 获取日历数据
   const request_getChartCalendar = async () => {

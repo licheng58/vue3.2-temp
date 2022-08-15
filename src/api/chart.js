@@ -30,3 +30,56 @@ export const getChartTimeAmount = date => {
   })
 }
 
+/**
+ * 饼图数据
+ */
+export const getChartPie = () => {
+  return request({
+    url: '/chart/pie'
+  })
+}
+
+/**
+ * 文字云图数据
+ */
+export const getChartWordCloud = () => {
+  return request({
+    url: '/chart/wordcloud'
+  })
+}
+
+/**
+ * 地图可视化
+ */
+export const getChartMap = () => {
+  return request({
+    url: '/chart/bmap'
+  })
+}
+
+/**
+ * 大区数据
+ */
+export const getChartRegions = () => {
+  return request({
+    url: '/chart/regions'
+  })
+}
+
+/**
+ * 表格数据
+ */
+export const getChartSheet = regionId => {
+  return request({
+    url: '/chart/sheets',
+    params: {
+      regionId
+    }
+  })
+}
+
+
+
+
+
+
